@@ -1,0 +1,226 @@
+body{
+    background-color: rgba(237, 239, 247, 1);
+    margin: 0;
+}
+.nav{
+    height: 304px;
+}
+.nav .backimg{
+    background-image: url(../img/backgd.jpg);
+    height: 234px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.nav .menu{
+    position: relative;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    background-color: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 5px 5px 2px rgba(156, 156, 156, 0.514);
+    transition: border-radius 0.3s,height 0.3s ease;
+}
+.menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu ul li{
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+    font-family: 幼圆;
+    font-weight: bold;
+    color: rgb(112, 112, 112);
+    line-height: 56px;
+}
+.about{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+.about .content{
+    top: 150px;
+    position: absolute;
+    height: 0;
+    width: 90%;
+    margin: 0 5%;
+    padding-top: 20px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.about .content img{
+    float: left;
+    height: 140px;
+    width: 140px;
+    margin: 30px;
+    margin-bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0 3px 4px 0 rgba(156, 156, 156, 0.664);
+}
+.about .content p{
+    margin: 30px;
+    font-size: x-large;
+    word-wrap:break-word;
+    font-family: 方正锐正黑简体_纤;
+}
+.tools{
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    /* background-color: aquamarine; */
+    height: 80px;
+    width: 80px;
+}
+.tools .rocket{
+    margin: 0 auto;
+    background-color: rgba(245, 245, 245, 0.767);
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    box-shadow: 0 5px 5px 2px rgba(156, 156, 156, 0.514);
+    background-size: cover;
+}
+.rocket svg{
+    margin: 8px;
+}
+.show{
+    display: none;
+    padding: 10px 0;
+    width: 92%;
+    min-height: 200px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 3px 4px 0 rgba(156, 156, 156, 0.664);
+}
+.show .content{
+    width: 92%;
+    margin: 0 auto;
+}
+.show .content code{
+    background-color: azure;
+    padding: 0 4px;
+}
+.show .content pre code{
+    margin: 0 10px;
+    overflow: auto;
+    background-color:black;
+    border-radius: 10px;
+    padding: 6px 10px;
+}
+.show .content td{
+    background-color: rgb(233, 245, 220);
+    border-radius: 10px;
+    text-align: center;
+}
+.show .content img{
+        width: 100%;
+}
+.show .content blockquote{
+    height: fit-content;
+    background-color: rgba(209, 221, 221, 0.671);
+    width: 96%;
+    margin: 10px auto;
+    padding: 6px 0;
+    border-radius: 10px;
+    font-family: 方正锐正黑简体_纤;
+}
+.show .content blockquote p{
+    width: 92%;
+    margin: 0 auto;
+    word-wrap: break-word;
+}
+.statistic{
+    width: 92%;
+    height: 400px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 4px 0 rgba(156, 156, 156, 0.664);
+}
+.statistic span{
+    margin-left: 24px;
+    font-family: 仿宋,宋体;
+    font-size: 30px;
+}
+.statistic span.num{
+    font-size: 38px;
+    color: rgb(102, 170, 226);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.contain{
+    display: none;
+    width: 92%;
+    height: fit-content;
+    margin: 20px auto;
+}
+.contain .block{
+    height: fit-content;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 3px 4px 0 rgba(156, 156, 156, 0.664);
+}
+.contain .block .title{
+    font-family: 方正锐正黑简体_纤;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    font-size: x-large;
+}
+.contain .block .info{
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 14px;
+    font-family: 幼圆;
+}
+.contain .block .info span.time{
+    font-weight: bold;
+}
+.contain .block .info span.type{
+    margin-right: 20px;
+    font-weight: bold;
+}
+.contain .block .cover{
+    margin: 0 auto;
+    width: 94%;
+    height: 224px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.contain .block p{
+    width: 92%;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+}
+.contain .block .read{
+    margin: 0 auto;
+    width: 120px;
+    font-family: 幼圆;
+    background-color: black;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: all 0.3s ease;
+}
+.contain .block .read:hover{
+    background-color: white;
+    color: black;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICOF 的文集</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="./css/monokai_sublime.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/highlight.min.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="backimg"></div>
+        <div class="menu">
+            <ul>
+                <li onclick="author()">关于作者</li>
+                <li onclick="changeT()">分类</li>
+                <li onclick="changeN()">今日上新</li>
+                <li onclick="changeA()">全部文章</li>
+            </ul>
+        </div>
+    </div>
+    <div class="about">
+        <div class="content">
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1730483316&spec=5" alt="">
+            <p>是个非常沙雕的人</p>
+            <p>经常性能力跟不上想法</p>
+            <p>喜欢偷懒然后十有八九会把自己害惨</p>
+            <p>总而言之活得还是比较快乐</p>
+        </div>
+    </div>
+    <div class="tools">
+        <div class="rocket" onclick="rocket()">
+            <svg fill="rgba(106,127,239,0.3)" t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404"
+                class="icon" data-v-c6073ba8="">
+                <path
+                    d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z"
+                    p-id="5405" data-v-c6073ba8=""></path>
+                <path
+                    d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z"
+                    p-id="5406" data-v-c6073ba8=""></path>
+            </svg>
+        </div>
+    </div>
+    <div class="mainb">
+        <div class="show">
+            <div class="content"></div>
+        </div>
+        <div class="statistic">
+            <div style="height: 40px;"></div>
+            <span>目前一共有</span><span id="anum" class="num"></span><span>篇文章</span><br>
+            <span>总共有</span><span id="tnum" class="num"></span><span>个分类</span><br>
+            <span>今日上新了</span><span id="nnum" class="num"></span><span>篇文章</span><br>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
+                height="300">
+                <g fill="rgba(106,127,239,0.1)">
+                    <path d="M 0 70 Q 75 39, 150 70 T 300 70 T 450 70 T 600 70 T 750 70 V 1000 H 0 V 0"></path>
+                    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-300"
+                        dur="1.5s" repeatCount="indefinite"></animateTransform>
+                </g>
+                <g fill="rgba(106,127,239,0.15)">
+                    <path d="M 0 70 Q 87.5 47, 175 70 T 350 70 T 525 70 T 700 70 T 875 70 T 1050 70 V 1000 H 0 V 0">
+                    </path>
+                    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-350"
+                        dur="3s" repeatCount="indefinite"></animateTransform>
+                </g>
+                <g fill="rgba(106,127,239,0.18)" transform="translate(-903.868 0)">
+                    <path d="M 0 70 Q 135 36, 270 70 T 540 70 T 810 70 T 1080 70 V 1000 H 0 V 0"
+                        transform="translate(-38.232284367796474, 0)"></path>
+                    <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-540"
+                        dur="2s" repeatCount="indefinite"></animateTransform>
+                </g>
+            </svg>
+        </div>
+        <div class="newblock contain">
+        </div>
+        <div class="allblock contain">
+        </div>
+        <div class="typeblock contain">
+
+        </div>
+    </div>
+</body>
+<script src="./js/main.js"></script>
+
+</html>
