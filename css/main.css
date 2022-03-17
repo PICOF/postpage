@@ -82,6 +82,7 @@ body{
     font-family: 方正锐正黑简体_纤;
 }
 .tools{
+    z-index: 1000;
     bottom: 0;
     right: 0;
     position: fixed;
