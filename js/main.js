@@ -118,10 +118,7 @@ function mkblock(node,tar){
                 }
                 hljs.initHighlighting.called = false;
                 hljs.initHighlighting();
-                window.scroll({ 
-                    top: 200, 
-                    behavior: "smooth" 
-                });
+                scrollToNav()
             });
         }))
         blk.append(tt,info,cvr,i,bt)
@@ -131,22 +128,28 @@ function mkblock(node,tar){
 function changeN(){
     initscreen()
     $('.newblock').css('display','block')
-    window.scroll({ 
-        top: 0, 
-        behavior: "smooth" 
-    });
+    scrollToTop()
 }
 function changeA(){
     initscreen()
     $('.allblock').css('display','block')
-    window.scroll({ 
-        top: 0, 
-        behavior: "smooth" 
-    });
+    scrollToTop()
 }
 function rocket(){
-    window.scroll({ 
-        top: 0, 
-        behavior: "smooth" 
-    });
+    scrollToTop()
+}
+const scrollToTop = () => {
+    let sTop = document.documentElement.scrollTop || document.body.scrollTop
+    if (sTop > 0) {
+        window.scrollTo(0, sTop - sTop / 24)
+        // console.log(window.screenY+' '+(sTop - sTop / 24))
+        window.requestAnimationFrame(scrollToTop)
+    }
+}
+const scrollToNav = () => {
+    let sTop = document.documentElement.scrollTop || document.body.scrollTop +210
+    if (sTop > 210) {
+        window.requestAnimationFrame(scrollToNav)
+        window.scrollTo(0, sTop - sTop / 24)
+    }
 }
