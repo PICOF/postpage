@@ -67,16 +67,21 @@ p.then(function(data){
     for(var i in alist){
         createblist(alist[i],$('.allblock'))
     }
+    mktpblock(alist)
 })
 function initscreen(){
     $('.show').css('height','0')
     $('.statistic').css('height','0')
     $('.newblock').css('height','0')
     $('.allblock').css('height','0')
+    $('.typeblock').css('height','0')
+    $('.typechild').css('height','0')
     $('.show').css('opacity','0')
     $('.statistic').css('opacity','0')
     $('.newblock').css('opacity','0')
     $('.allblock').css('opacity','0')
+    $('.typeblock').css('opacity','0')
+    $('.typechild').css('opacity','0')
 }
 function createblist(list,tar){
     for(var i=0;i<list.length;i++){
@@ -132,6 +137,24 @@ function mkblock(node,tar){
         tar.append(blk)
     });
 }
+function mktpblock(list){
+    for(let li=0;li<list.length;li++){
+        if(list[li].length>0){
+            var blk=$("<div></div>").addClass('block');
+            var tt=$("<div></div>").addClass('title');
+            tt.text(list[li][0].type)
+            var bt=$("<div></div>").addClass('read');
+            bt.text('进入分类');
+            bt.mousedown((() => {
+                $('.typechild').empty()
+                createblist(list[li],$('.typechild'))
+                changeTC()
+            }))
+            blk.append(tt,bt)
+            $('.typeblock').append(blk)
+        }
+    }
+}
 function changeN(){
     initscreen()
     $('.newblock').css('height','fit-content')
@@ -144,6 +167,18 @@ function changeA(){
     $('.allblock').css('opacity','1')
     scrollToTop()
 }
+function changeT(){
+    initscreen()
+    $('.typeblock').css('height','fit-content')
+    $('.typeblock').css('opacity','1')
+    scrollToTop()
+}
+function changeTC(){
+    initscreen()
+    $('.typechild').css('height','fit-content')
+    $('.typechild').css('opacity','1')
+    scrollToTop()
+}
 function rocket(){
     scrollToTop()
 }
@@ -151,7 +186,6 @@ const scrollToTop = () => {
     let sTop = document.documentElement.scrollTop || document.body.scrollTop
     if (sTop > 0) {
         window.scrollTo(0, sTop - sTop / 24)
-        console.log(WheelEvent.deltaX)
         window.requestAnimationFrame(scrollToTop)
     }
 }
