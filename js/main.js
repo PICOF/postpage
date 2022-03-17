@@ -69,10 +69,14 @@ p.then(function(data){
     }
 })
 function initscreen(){
-    $('.show').css('display','none')
-    $('.statistic').css('display','none')
-    $('.newblock').css('display','none')
-    $('.allblock').css('display','none')
+    $('.show').css('height','0')
+    $('.statistic').css('height','0')
+    $('.newblock').css('height','0')
+    $('.allblock').css('height','0')
+    $('.show').css('opacity','0')
+    $('.statistic').css('opacity','0')
+    $('.newblock').css('opacity','0')
+    $('.allblock').css('opacity','0')
 }
 function createblist(list,tar){
     for(var i=0;i<list.length;i++){
@@ -106,7 +110,8 @@ function mkblock(node,tar){
         bt.mousedown((() => {
             $.get(node.route, function(response){
                 initscreen()
-                $('.show').css('display','block')
+                $('.show').css('height','fit-content')
+                $('.show').css('opacity','1')
                 $('.show .content').html(marked.parse(response));
                 var img=document.querySelectorAll('.show .content img');
                 if(img.length!=0){
@@ -118,7 +123,9 @@ function mkblock(node,tar){
                 }
                 hljs.initHighlighting.called = false;
                 hljs.initHighlighting();
-                scrollToNav()
+                window.scrollTo({
+                    top:210
+                })
             });
         }))
         blk.append(tt,info,cvr,i,bt)
@@ -127,12 +134,14 @@ function mkblock(node,tar){
 }
 function changeN(){
     initscreen()
-    $('.newblock').css('display','block')
+    $('.newblock').css('height','fit-content')
+    $('.newblock').css('opacity','1')
     scrollToTop()
 }
 function changeA(){
     initscreen()
-    $('.allblock').css('display','block')
+    $('.allblock').css('height','fit-content')
+    $('.allblock').css('opacity','1')
     scrollToTop()
 }
 function rocket(){
@@ -142,14 +151,7 @@ const scrollToTop = () => {
     let sTop = document.documentElement.scrollTop || document.body.scrollTop
     if (sTop > 0) {
         window.scrollTo(0, sTop - sTop / 24)
-        // console.log(window.screenY+' '+(sTop - sTop / 24))
+        console.log(WheelEvent.deltaX)
         window.requestAnimationFrame(scrollToTop)
-    }
-}
-const scrollToNav = () => {
-    let sTop = document.documentElement.scrollTop || document.body.scrollTop +210
-    if (sTop > 210) {
-        window.requestAnimationFrame(scrollToNav)
-        window.scrollTo(0, sTop - sTop / 24)
     }
 }
