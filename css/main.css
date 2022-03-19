@@ -1,6 +1,7 @@
 body{
     background-color: rgba(237, 239, 247, 1);
     margin: 0;
+    padding-bottom: 30px;
 }
 *{
     box-sizing: border-box;
