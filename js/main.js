@@ -100,7 +100,7 @@ function mkblock(node,tar){
         s2.text(node.type)
         var s3=$("<span></span>").text('最后修改时间：');
         var s4=$("<span></span>").addClass('time');
-        s4.text(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate())
+        s4.text(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
         info.append(s1,s2,s3,s4)
         var cvr=$("<div></div>").addClass('cover');
         if(node.cover!=null){
