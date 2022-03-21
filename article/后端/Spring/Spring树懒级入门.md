@@ -52,11 +52,9 @@ IoC 就是 Inversion of Control，即控制反转，简单来说，平时控制�
 #### 关于
 
 - 在创建 Bean 时，IoC 容器会使用反射获取相关信息（将 xml 中 class 属性解析，使用工厂类创建），IoC 底层就是对象工厂
-
 - Spring 提供 IoC 容器的两种实现方式：（两大接口）
 
   1. BeanFactory：获取对象时创建
-
   2. ApplicationContext：加载配置文件时创建
 
      （后文会对这两种方式进行详细解释）
@@ -104,7 +102,7 @@ IoC 就是 Inversion of Control，即控制反转，简单来说，平时控制�
 
 淦。
 
-改了几项参数后发现并不是地址之类的配错了，结果往后一滑还有一段：`Failed to instantiate [springtest.Test]: Is the constructor accessible?;` 
+改了几项参数后发现并不是地址之类的配错了，结果往后一滑还有一段：`Failed to instantiate [springtest.Test]: Is the constructor accessible?;`
 
 还好老早以前就出过这岔子，属于是模块化编程没开龙脊，module--info 文件加上 open 开一下龙脊就 OK 了。
 
@@ -176,7 +174,6 @@ public class Test {
 #### 关于 xml 写法有些要注意的点：
 
 - **id**：给对象在**容器中**提供一个唯一标识。用于获取对象。
-
 - **class**：指定类的全限定名。用于反射创建对象。默认情况下**调用无参构造函数**。
 
   > **注：id 与 name 的区别**
@@ -209,7 +206,7 @@ public class Test {
   > "com.learnSpring.hellWorld#0" 
   > "com.learnSpring.hellWorld#1"
   > ```
-
+  >
 - **scope**：指定对象的作用范围。
 
   - *singleton*：**默认值**，单例的（在整个容器中只有一个对象）.
@@ -218,19 +215,16 @@ public class Test {
   - *session*：将Spring 创建的 Bean 对象存入到 session 域中.
   - *global session*：WEB 项目中,应用在 Portlet 环境.如果没有 Portlet 环境那么globalSession 相当于 session。
 
-  |     作用域     | 描述                                                         |
-  | :------------: | :----------------------------------------------------------- |
-  |   singleton    | 单例模式，singleton是默认的作用域，当定义Bean时没有指定scope配置项，Bean的作用域被默认为singleton。singleton属于单例模式，在整个系统上下文环境中，仅有一个Bean实例。**因此生命周期与容器绑定** |
-  |   prototype    | 原型模式，当一个Bean的作用域被定义prototype时，程序每次从IOC容器获取的Bean都是一个新的实例。**需要时才创建，长时间不使用则被垃圾回收机制自动回收** |
-  |    request     | http请求，bean作用于HTTP request生命周期，每个request有通过bean创建的实例。 |
-  |    session     | 会话，bean作用于session生命周期。                            |
-  | global-session | 全局会话，bean作用于全局的session生命周期。                  |
-
+  |     作用域     | 描述                                                                                                                                                                                                 |
+  | :------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  |   singleton   | 单例模式，singleton是默认的作用域，当定义Bean时没有指定scope配置项，Bean的作用域被默认为singleton。singleton属于单例模式，在整个系统上下文环境中，仅有一个Bean实例。**因此生命周期与容器绑定** |
+  |   prototype   | 原型模式，当一个Bean的作用域被定义prototype时，程序每次从IOC容器获取的Bean都是一个新的实例。**需要时才创建，长时间不使用则被垃圾回收机制自动回收**                                             |
+  |    request    | http请求，bean作用于HTTP request生命周期，每个request有通过bean创建的实例。                                                                                                                          |
+  |    session    | 会话，bean作用于session生命周期。                                                                                                                                                                    |
+  | global-session | 全局会话，bean作用于全局的session生命周期。                                                                                                                                                          |
 - **init-method**：指定类中的初始化方法名称。
-
 - **destroy-method**：指定类中销毁方法名称。比如DataSource的配置中一般需要指定destroy-method=“close”。
-
-- **lazy-init**：ApplicationContext实现的默认行为就是在启动时将所有 singleton bean进行实例化。lazy-init可以延迟初始化，设置`lazy-init="true"`使得Ioc容器在第一次需要bean的时候进行实例化。
+- **lazy-init**：ApplicationContext实现的默认行为就是在启动时将所有 singleton bean进行实例化。lazy-init可以延迟初始化，设置 `lazy-init="true"`使得Ioc容器在第一次需要bean的时候进行实例化。
 
 #### Bean 的实例化
 
@@ -454,32 +448,28 @@ public void test3() {
 ##### （bean 作用域）
 
 1. **在 Spring 里面，设置创建 bean 实例是单实例还是多实例**
-
 2. **在 Spring 里面，默认情况下，bean 是单实例对象**
 
    ![image-20220308095254696](image-20220308095254696.png)
 
    <center>结果中的哈希码相同</center>
-
 3. **如何设置单实例还是多实例**
 
 - **在 spring 配置文件 bean 标签里面有属性（scope）用于设置单实例还是多实例**
-
 - **scope 属性值**
 
-  ​	第一个值 默认值，singleton，表示是单实例对象
+      第一个值 默认值，singleton，表示是单实例对象
 
-  ​	第二个值 prototype，表示是多实例对象
+      第二个值 prototype，表示是多实例对象
 
   ![img](ZH9YZAJLTXL01CE{TKI_P}Y.png)
 
   ![img](8%2TIFQSUUZ$@KZ0G}W7T`C.png)
-
 - **singleton 和 prototype 区别**
 
-  ​	**第一** singleton 单实例，prototype 多实例
-  ​	**第二** 设置 scope 值是 singleton 时候，加载 spring 配置文件时候就会创建单实例对象
-   设置 scope 值是 prototype 时候，不是在加载 spring 配置文件时候创建 对象，在调用 getBean 方法时候创建多实例对象
+      **第一** singleton 单实例，prototype 多实例
+  	**第二** 设置 scope 值是 singleton 时候，加载 spring 配置文件时候就会创建单实例对象
+  设置 scope 值是 prototype 时候，不是在加载 spring 配置文件时候创建 对象，在调用 getBean 方法时候创建多实例对象
 
 #### ApplicationContext
 
@@ -489,9 +479,9 @@ public void test3() {
 ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
 ```
 
-可以看到，Spring容器就是`ApplicationContext`，它是一个接口，有很多实现类，这里我们选择`ClassPathXmlApplicationContext`，表示它会自动从classpath中查找指定的XML配置文件。
+可以看到，Spring容器就是 `ApplicationContext`，它是一个接口，有很多实现类，这里我们选择 `ClassPathXmlApplicationContext`，表示它会自动从classpath中查找指定的XML配置文件。
 
-获得了`ApplicationContext`的实例，就获得了IoC容器的引用。从`ApplicationContext`中我们可以根据Bean的ID获取Bean，**但更多的时候我们根据Bean的类型获取Bean的引用**：
+获得了 `ApplicationContext`的实例，就获得了IoC容器的引用。从 `ApplicationContext`中我们可以根据Bean的ID获取Bean，**但更多的时候我们根据Bean的类型获取Bean的引用**：
 
 ```java
 Test t=context.getBean(Test.class);
@@ -503,14 +493,14 @@ Test t=context.getBean(Test.class);
 Test t=context.getBean("test",Test.class);
 ```
 
-Spring还提供另一种IoC容器叫`BeanFactory`，使用方式和`ApplicationContext`类似：
+Spring还提供另一种IoC容器叫 `BeanFactory`，使用方式和 `ApplicationContext`类似：
 
 ```java
 BeanFactory factory = new XmlBeanFactory(new ClassPathResource("application.xml"));
 MailService mailService = factory.getBean(MailService.class);
 ```
 
-`BeanFactory`和`ApplicationContext`的区别在于，`BeanFactory`的实现是按需创建，即第一次获取Bean时才创建这个Bean，而`ApplicationContext`会一次性创建所有的Bean。实际上，`ApplicationContext`接口是从`BeanFactory`接口继承而来的，并且，`ApplicationContext`提供了一些额外的功能，包括国际化支持、事件和通知机制等。通常情况下，我们总是使用`ApplicationContext`，很少会考虑使用`BeanFactory`。
+`BeanFactory`和 `ApplicationContext`的区别在于，`BeanFactory`的实现是按需创建，即第一次获取Bean时才创建这个Bean，而 `ApplicationContext`会一次性创建所有的Bean。实际上，`ApplicationContext`接口是从 `BeanFactory`接口继承而来的，并且，`ApplicationContext`提供了一些额外的功能，包括国际化支持、事件和通知机制等。通常情况下，我们总是使用 `ApplicationContext`，很少会考虑使用 `BeanFactory`。
 
 ### 把麻烦的 xml 扔掉吧！(并不)
 
@@ -521,16 +511,12 @@ MailService mailService = factory.getBean(MailService.class);
 - `@Component`注解：
 
   实际上就相当于定义一个 Bean 组件，名称可自选，默认为类名首字母变小写
-
 - `@Autowired`注解：
 
-  相当于把指定类型的Bean注入到指定的字段中。和XML配置相比，`@Autowired`大幅简化了注入，因为它不但可以写在`set()`方法上，还可以直接写在字段上，甚至可以写在构造方法中 
-
+  相当于把指定类型的Bean注入到指定的字段中。和XML配置相比，`@Autowired`大幅简化了注入，因为它不但可以写在 `set()`方法上，还可以直接写在字段上，甚至可以写在构造方法中
 - `@Configuration`注解：
 
-  如果使用的实现类是`AnnotationConfigApplicationContext`，必须传入一个标注了`@Configuration`的类名。
-
+  如果使用的实现类是 `AnnotationConfigApplicationContext`，必须传入一个标注了 `@Configuration`的类名。
 - `@ComponentScan`注解：
 
-  这个注解一定要用在文件结构中所有组件的最上层文件夹，它告诉容器，自动搜索当前类所在的包以及子包，把所有标注为`@Component`的Bean自动创建出来，并根据`@Autowired`进行装配。
-
+  这个注解一定要用在文件结构中所有组件的最上层文件夹，它告诉容器，自动搜索当前类所在的包以及子包，把所有标注为 `@Component`的Bean自动创建出来，并根据 `@Autowired`进行装配。
