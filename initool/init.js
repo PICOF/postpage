@@ -28,7 +28,7 @@ function readDirRecur(fileList,n,folder, callback) {
             l.birtht=stats.birthtime
             l.mtime=stats.mtime     
           }else if(file.slice(0,file.indexOf('.'))=='cover'){
-            l.cover=file
+            l.cover=relapath
           }
           checkEnd()
         }
