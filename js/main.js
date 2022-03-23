@@ -104,8 +104,7 @@ function mkblock(node,tar){
         info.append(s1,s2,s3,s4)
         var cvr=$("<div></div>").addClass('cover');
         if(node.cover!=null){
-            console.log(node.cover);
-            cvr.css('background-image','url('+node.cover+')')
+            cvr.css('background-image','url('+node.cover.replace(/\\/g,'\/')+')')
         }else{
             cvr.css('background-image','url(./img/example.jpg)')
         }
